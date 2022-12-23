@@ -1,23 +1,56 @@
-/**n_xxx
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+import('./bootstrap');
+import ElementPlus from 'element-plus';
 
-require('./bootstrap');
-import ElementUI from 'element-ui';
+import {createApp} from 'vue';
+
+const app = createApp({});
+
 import graphline from './components/Graphline.vue';
+
+app.component('graphline', graphline);
+
 import doughnut from './components/Doughnut.vue';
+
+app.component('doughnut', doughnut);
+
 import calendar from './components/Calendar.vue';
+
+app.component('calendar', calendar);
+
 import createAppointment from './components/AppointmentCreate.vue';
+
+app.component('createAppointment', createAppointment);
+
 import message from './components/Message.vue';
+
+app.component('message', message);
+
 import search from './components/Search.vue';
+
+app.component('search', search);
+
 import dynamictable from './components/DynamicTable.vue';
+
+app.component('dynamictable', dynamictable);
+
 import invoiceLineModal from './components/InvoiceLineModal.vue';
+
+app.component('invoiceLineModal', invoiceLineModal);
+
 import passportclients from './components/passport/Clients.vue';
+
+app.component('passportclients', passportclients);
+
 import passportauthorizedclients from './components/passport/AuthorizedClients.vue';
+
+app.component('passportauthorizedclients', passportauthorizedclients);
+
 import passportpersonalaccesstokens from './components/passport/PersonalAccessTokens.vue';
-import 'element-ui/lib/theme-default/index.css';
+
+app.component('passportpersonalaccesstokens', passportpersonalaccesstokens);
+
+// import 'element-ui/lib/theme-default/index.css';
+import 'element-plus/dist/index.css';
 import VueCurrencyFilter from 'vue-currency-filter'
 
 /**
@@ -124,10 +157,7 @@ $(document).ready(function () {
         $('.view-offer-inner').empty().append(component.$el)
         $('#view-offer').modal('show');
     });
-
-    
 });
-
 
 
 $(window).on('resize', function () {
@@ -148,25 +178,26 @@ Vue.prototype.trans = (key) => {
     return _.get(window.trans, key, key);
 };
 
-var app = new Vue({
-    el: '#wrapper',
-    components: {
-        graphline,
-        doughnut,
-        message,
-        passportclients,
-        passportauthorizedclients,
-        passportpersonalaccesstokens,
-        search,
-        dynamictable,
-        calendar,
-        createAppointment,
-        invoiceLineModal
-    },
-    //Used for global accessibilty to reload page on events
-    methods: {
-        reload: function () {
-            location.reload();
-        }
-    }
-});
+app.mount('#wrapper');
+// var app = new Vue({
+//     el: '#wrapper',
+//     components: {
+//         graphline,
+//         doughnut,
+//         message,
+//         passportclients,
+//         passportauthorizedclients,
+//         passportpersonalaccesstokens,
+//         search,
+//         dynamictable,
+//         calendar,
+//         createAppointment,
+//         invoiceLineModal
+//     },
+//     //Used for global accessibilty to reload page on events
+//     methods: {
+//         reload: function () {
+//             location.reload();
+//         }
+//     }
+// });

@@ -1,14 +1,17 @@
+import axios from 'axios';
+window.axios = axios;
 
-window._ = require('lodash');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+let token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
+import 'bootstrap';
 window.selectpicker = require('bootstrap-select');
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -19,9 +22,6 @@ window.selectpicker = require('bootstrap-select');
 
 window.Vue = require('vue');
 require('vue-resource');
-
-window.axios = require('axios');
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of

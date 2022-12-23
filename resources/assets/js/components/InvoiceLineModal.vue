@@ -77,7 +77,7 @@
 
                         <div class="form-group col-sm-3">
                             <label for="quantity" class="control-label thin-weight">{{trans('Quantity')}}</label>
-                            <input v-model="line.quantity" type="number" name="quantity" :disabled="readOnly" class="form-control" value="1">
+                            <input v-model="line.quantity" type="number" name="quantity" :disabled="readOnly" class="form-control">
                         </div>
                         <div class="form-group col-sm-6" style="padding-top: 15px;">
                             <div class="col-sm-4">
