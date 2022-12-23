@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Invoice;
+namespace Tests\Unit\Offer;
 
 use App\Enums\OfferStatus;
 use App\Models\Offer;
@@ -17,7 +17,7 @@ class SetStatusTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->offer = factory(Offer::class)->create();
+        $this->offer = Offer::factory()->create();
     }
 
     /** @test */

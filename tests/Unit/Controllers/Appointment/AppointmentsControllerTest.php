@@ -18,8 +18,8 @@ class AppointmentsControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->appointmentsWithInTime = factory(Appointment::class)->create([
+        $this->user = User::factory()->create();
+        $this->appointmentsWithInTime = Appointment::factory()->create([
             'user_id' => $this->user->id,
             'start_at' => now(),
             'end_at' => now()->addHour(),
@@ -28,7 +28,7 @@ class AppointmentsControllerTest extends TestCase
             'title' => 'test'
         ]);
 
-        $this->appointmentsWithToLate = factory(Appointment::class)->create([
+        $this->appointmentsWithToLate = Appointment::factory()->create([
             'user_id' => $this->user->id,
             'start_at' => now()->addWeeks(6),
             'end_at' => now()->addWeeks(6)->addHour(),
@@ -36,7 +36,7 @@ class AppointmentsControllerTest extends TestCase
             'source_type' => User::class,
             'title' => 'test'
         ]);
-        $this->appointmentsWithToEarly = factory(Appointment::class)->create([
+        $this->appointmentsWithToEarly = Appointment::factory()->create([
             'user_id' => $this->user->id,
             'start_at' => now()->subWeeks(4),
             'end_at' => now()->subWeeks(4)->addHour(),
@@ -53,6 +53,7 @@ class AppointmentsControllerTest extends TestCase
         $r = $this->json('GET', '/appointments/data');
 
         foreach ($r->decodeResponseJson() as $appointment) {
+            $appointment = json_decode($appointment, true)[0];
             $this->assertNotTrue($appointment["external_id"] == $this->appointmentsWithToLate->external_id);
             $this->assertNotTrue($appointment["external_id"] == $this->appointmentsWithToEarly->external_id);
             if ($appointment["external_id"] == $this->appointmentsWithInTime->external_id) {

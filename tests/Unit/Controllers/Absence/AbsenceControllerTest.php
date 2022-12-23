@@ -4,6 +4,7 @@ namespace Tests\Unit\Controllers\Absence;
 use App\Models\Absence;
 use App\Models\Contact;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Client;
@@ -19,7 +20,7 @@ class AbsenceControllerTest extends TestCase
     /** @test **/
     public function canCreateAbsenceForOtherUser()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this->json('POST', route('absence.store'), [
             'reason' => 'Sick',
             'user_external_id' => $user->external_id,
@@ -30,17 +31,17 @@ class AbsenceControllerTest extends TestCase
         ]);
 
         $absences = $user->absences;
-        $this->assertNotNull(\Session::all()["flash_message"]);
+        $this->assertNotNull(Session::all()["flash_message"]);
         $this->assertCount(1, $absences);
     }
 
     /** @test **/
     public function creatingAbsenceForOtherUsersWithoutPermissionCreatesForUserItSelf()
     {
-        $actingUser = factory(User::class)->create();
+        $actingUser = User::factory()->create();
         $this->actingAs($actingUser);
 
-        $absentUser = factory(User::class)->create();
+        $absentUser = User::factory()->create();
         $response = $this->json('POST', route('absence.store'), [
             'reason' => 'Sick',
             'user_external_id' => $absentUser->external_id,
@@ -65,7 +66,7 @@ class AbsenceControllerTest extends TestCase
             'comment' => 'Sick kid'
         ]);
 
-        $this->assertNotNull(\Session::all()["flash_message"]);
+        $this->assertNotNull(Session::all()["flash_message"]);
         $this->assertCount(1, auth()->user()->absences);
     }
 }

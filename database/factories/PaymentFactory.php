@@ -1,16 +1,20 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use App\Models\Invoice;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Payment;
-use Faker\Generator as Faker;
+class PaymentFactory extends Factory
+{
 
-$factory->define(Payment::class, function (Faker $faker) {
-    return [
-        'external_id' => $faker->uuid,
-        'invoice_id' => factory(\App\Models\Invoice::class),
-        'amount' => 1000,
-        'payment_date' => today(),
-        'payment_source' => 'bank'
-    ];
-});
+    public function definition()
+    {
+        return [
+            'external_id' => fake()->uuid,
+            'invoice_id' => Invoice::factory(),
+            'amount' => 1000,
+            'payment_date' => today(),
+            'payment_source' => 'bank'
+        ];
+    }
+}

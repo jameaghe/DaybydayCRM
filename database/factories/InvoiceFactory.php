@@ -1,14 +1,18 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use App\Models\Client;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Invoice;
-use Faker\Generator as Faker;
+class InvoiceFactory extends Factory
+{
 
-$factory->define(Invoice::class, function (Faker $faker) {
-    return [
-        'external_id' => $faker->uuid,
-        'status' => 'draft',
-        'client_id' => factory(\App\Models\Client::class),
-    ];
-});
+    public function definition()
+    {
+        return [
+            'external_id' => fake()->uuid,
+            'status' => 'draft',
+            'client_id' => Client::factory(),
+        ];
+    }
+}

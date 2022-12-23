@@ -47,7 +47,7 @@ class ClientsControllerTest extends TestCase
     /** @test **/
     public function can_delete_without_any_relations_client()
     {
-        $client = factory(Client::class)->create();
+        $client = Client::factory()->create();
 
         $this->assertNotNull(Client::where('external_id', $client->external_id)->first());
         $r = $this->json('delete', route('clients.destroy', $client->external_id));
@@ -58,7 +58,7 @@ class ClientsControllerTest extends TestCase
     /** @test **/
     public function can_update_client()
     {
-        $client = factory(Client::class)->create(
+        $client = Client::factory()->create(
             [
                 'vat' => "5898989898",
                 'company_type' => 'A/S',
@@ -66,7 +66,7 @@ class ClientsControllerTest extends TestCase
             ]
         );
 
-        $contact = factory(Contact::class)->create(
+        $contact = Contact::factory()->create(
             [
                 'name' => "Kristian",
                 'secondary_number' => '11111111',
@@ -106,8 +106,8 @@ class ClientsControllerTest extends TestCase
     /** @test **/
     public function can_update_assignee()
     {
-        $client = factory(Client::class)->create();
-        $user = factory(User::class)->create();
+        $client = Client::factory()->create();
+        $user = User::factory()->create();
 
         $this->assertNotEquals($client->user_id, $user->id);
 
@@ -122,8 +122,8 @@ class ClientsControllerTest extends TestCase
     /** @test **/
     public function cant_update_assignee_without_permission()
     {
-        $client = factory(Client::class)->create();
-        $user = factory(User::class)->create();
+        $client = Client::factory()->create();
+        $user = User::factory()->create();
         $this->setUser($user);
         $this->assertNotEquals($client->user_id, $user->id);
 

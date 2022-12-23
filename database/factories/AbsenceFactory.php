@@ -1,17 +1,22 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Absence;
 use App\Models\User;
-use Faker\Generator as Faker;
 
-$factory->define(Absence::class, function (Faker $faker) {
-    return [
-        'external_id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-        'reason' => $faker->word,
-        'start_at' => now(),
-        'end_at' => now()->addDays(3),
-        'user_id' => factory(User::class),
-    ];
-});
+
+class AbsenceFactory extends Factory
+{
+
+    public function definition()
+    {
+        return [
+            'external_id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+            'reason' => fake()->word,
+            'start_at' => now(),
+            'end_at' => now()->addDays(3),
+            'user_id' => User::factory(),
+        ];
+    }
+}

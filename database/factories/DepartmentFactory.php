@@ -1,14 +1,17 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Department;
-use Faker\Generator as Faker;
+class DepartmentFactory extends Factory
+{
 
-$factory->define(Department::class, function (Faker $faker) {
-    return [
-        'name' => 'factory',
-        'external_id' => $faker->uuid,
-        'description' => 'Mock Department',
-    ];
-});
+    public function definition()
+    {
+        return [
+            'name' => 'factory',
+            'external_id' => fake()->uuid,
+            'description' => 'Mock Department',
+        ];
+    }
+}

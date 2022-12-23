@@ -26,8 +26,8 @@ class LeadsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->client = factory(Client::class)->create();
+        $this->user = User::factory()->create();
+        $this->client = Client::factory()->create();
     }
 
     /** @test **/
@@ -36,7 +36,7 @@ class LeadsControllerTest extends TestCase
         $response = $this->json('POST', route('leads.store'), [
                 'title' => 'Lead test',
                 'description' => 'This is a description',
-                'status_id' => factory(Status::class)->create(['source_type' => Lead::class])->id,
+                'status_id' => Status::factory()->create(['source_type' => Lead::class])->id,
                 'user_assigned_id' => $this->user->id,
                 'user_created_id' => $this->user->id,
                 'client_external_id' => $this->client->external_id,
@@ -52,7 +52,7 @@ class LeadsControllerTest extends TestCase
     /** @test **/
     public function can_update_assignee()
     {
-        $lead = factory(Lead::class)->create();
+        $lead = Lead::factory()->create();
         $this->assertNotEquals($lead->user_assigned_id, $this->user->id);
 
         $response = $this->json('PATCH', route('lead.update.assignee', $lead->external_id), [
@@ -65,8 +65,8 @@ class LeadsControllerTest extends TestCase
     /** @test **/
     public function can_update_status()
     {
-        $lead = factory(Lead::class)->create();
-        $status = factory(Status::class)->create();
+        $lead = Lead::factory()->create();
+        $status = Status::factory()->create();
 
         $this->assertNotEquals($lead->status_id, $status->id);
 
@@ -80,7 +80,7 @@ class LeadsControllerTest extends TestCase
     /** @test */
     public function can_update_deadline_for_lead()
     {
-        $lead = factory(Lead::class)->create();
+        $lead = Lead::factory()->create();
 
         $this->json('PATCH', route('lead.followup', $lead->external_id), [
             'deadline' => '2020-08-06',

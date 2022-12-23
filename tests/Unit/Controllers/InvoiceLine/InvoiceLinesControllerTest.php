@@ -30,8 +30,8 @@ class InvoiceLinesControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMiddleware([VerifyCsrfToken::class]);
-        $this->invoice = factory(Invoice::class)->create();
-        $this->invoiceLine = factory(InvoiceLine::class)->create([
+        $this->invoice = Invoice::factory()->create();
+        $this->invoiceLine = InvoiceLine::factory()->create([
             'invoice_id' => $this->invoice->id
         ]);
     }
@@ -51,7 +51,7 @@ class InvoiceLinesControllerTest extends TestCase
     /** @test **/
     public function cant_delete_without_permission()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->setUser($user);
         $this->assertNotNull(InvoiceLine::where('external_id', $this->invoiceLine->external_id)->first());
 

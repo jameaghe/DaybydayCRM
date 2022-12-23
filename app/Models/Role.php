@@ -1,12 +1,15 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Zizaco\Entrust\EntrustRole;
 use App\Models\Permission;
 
 class Role extends EntrustRole
 {
+    use HasFactory;
+
     const OWNER_ROLE = "owner";
     const ADMIN_ROLE = "administrator";
 

@@ -25,8 +25,8 @@ class OffersControllerTest extends TestCase
         parent::setUp();
 
         $this->withoutMiddleware([VerifyCsrfToken::class]);
-        $this->lead = factory(Lead::class)->create();
-        $this->offer = factory(Offer::class)->create();
+        $this->lead = Lead::factory()->create();
+        $this->offer = Offer::factory()->create();
     }
 
     /** @test **/

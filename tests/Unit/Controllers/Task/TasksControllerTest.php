@@ -26,8 +26,8 @@ class TasksControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->client = factory(Client::class)->create();
+        $this->user = User::factory()->create();
+        $this->client = Client::factory()->create();
     }
 
     /** @test **/
@@ -36,7 +36,7 @@ class TasksControllerTest extends TestCase
         $response = $this->json('POST', route('tasks.store'), [
                 'title' => 'Task test',
                 'description' => 'This is a description',
-                'status_id' => factory(Status::class)->create(['source_type' => Task::class])->id,
+                'status_id' => Status::factory()->create(['source_type' => Task::class])->id,
                 'user_assigned_id' => $this->user->id,
                 'user_created_id' => $this->user->id,
                 'client_external_id' => $this->client->external_id,
@@ -52,8 +52,8 @@ class TasksControllerTest extends TestCase
     /** @test **/
     public function can_add_project_on_task()
     {
-        $project = factory(Project::class)->create();
-        $task = factory(Task::class)->create();
+        $project = Project::factory()->create();
+        $task = Task::factory()->create();
 
         $this->assertNull($task->project_id);
         $response = $this->json('POST', route('tasks.update.project', $task->external_id), [
@@ -66,7 +66,7 @@ class TasksControllerTest extends TestCase
     /** @test **/
     public function can_update_assignee()
     {
-        $task = factory(Task::class)->create();
+        $task = Task::factory()->create();
         $this->assertNotEquals($task->user_assigned_id, $this->user->id);
 
         $response = $this->json('PATCH', route('task.update.assignee', $task->external_id), [
@@ -79,8 +79,8 @@ class TasksControllerTest extends TestCase
     /** @test **/
     public function can_update_status()
     {
-        $task = factory(Task::class)->create();
-        $status = factory(Status::class)->create();
+        $task = Task::factory()->create();
+        $status = Status::factory()->create();
 
         $this->assertNotEquals($task->status_id, $status->id);
 
@@ -94,7 +94,7 @@ class TasksControllerTest extends TestCase
     /** @test */
     public function can_update_deadline_for_task()
     {
-        $task = factory(Task::class)->create();
+        $task = Task::factory()->create();
 
         $response = $this->json('PATCH', route('task.update.deadline', $task->external_id), [
             'deadline_date' => '2020-08-06',
@@ -107,7 +107,7 @@ class TasksControllerTest extends TestCase
     /** @test */
     public function can_list_tasks()
     {
-        factory(Task::class)->create();
+        Task::factory()->create();
 
         $error = $this->json('GET', route('tasks.data'))
             ->assertSuccessful()

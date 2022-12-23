@@ -5,6 +5,7 @@ use App\Observers\ElasticSearchObserver;
 use App\Services\Comment\Commentable;
 use App\Traits\DeadlineTrait;
 use App\Traits\SearchableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon;
 
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Task extends Model implements Commentable
 {
-    use  SearchableTrait, SoftDeletes, DeadlineTrait;
+    use HasFactory, SearchableTrait, SoftDeletes, DeadlineTrait;
 
     const TASK_STATUS_CLOSED = "closed";
 

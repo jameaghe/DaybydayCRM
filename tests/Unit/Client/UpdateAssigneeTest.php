@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit\Client;
 
+use App\Events\ClientAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Client;
 use App\Models\User;
@@ -19,10 +20,9 @@ class UpdateAssigneeTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
 
-        $this->client = factory(Client::class)->create([
-
+        $this->client = Client::factory()->create([
             'company_name' => 'Just something'
         ]);
     }
@@ -32,7 +32,7 @@ class UpdateAssigneeTest extends TestCase
     {
         $this->assertNotEquals($this->client->user_id, $this->user->id);
 
-        $this->expectsEvents(\App\Events\ClientAction::class);
+        $this->expectsEvents(ClientAction::class);
         $this->client->updateAssignee($this->user);
 
         $this->assertEquals($this->client->user_id, $this->user->id);
@@ -41,10 +41,10 @@ class UpdateAssigneeTest extends TestCase
     /** @test */
     public function canUpdateAssigneeWithOutPermissionsAsAnyUser()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->setUser($user);
 
-        $this->expectsEvents(\App\Events\ClientAction::class);
+        $this->expectsEvents(ClientAction::class);
         $this->client->updateAssignee($this->user);
         $this->assertEquals($this->client->user_id, $this->user->id);
     }

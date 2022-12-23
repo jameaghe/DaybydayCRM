@@ -55,7 +55,7 @@ class CanNotAccessTest extends TestCase
     /** @test */
     public function deleteRole()
     {
-        $role = factory(Role::class)->create();
+        $role = Role::factory()->create();
 
         $response = $this->json('DELETE', route('roles.destroy', $role->external_id));
         $this->assertEquals(302, $response->getStatusCode());
@@ -65,7 +65,7 @@ class CanNotAccessTest extends TestCase
     // /** @test */
     // public function deleteTask()
     // {
-    //     $task = factory(Task::class)->create();
+    //     $task = Task::factory()->create();
 
     //     $response = $this->json('DELETE', route('tasks.destroy', $task->external_id));
     //     $this->assertEquals(302, $response->getStatusCode());
@@ -75,7 +75,7 @@ class CanNotAccessTest extends TestCase
     // /** @test */
     // public function deleteLead()
     // {
-    //     $lead = factory(Lead::class)->create();
+    //     $lead = Lead::factory()->create();
 
     //     $response = $this->json('DELETE', route('leads.destroy', $lead->external_id));
     //     $this->assertEquals(302, $response->getStatusCode());
@@ -85,7 +85,7 @@ class CanNotAccessTest extends TestCase
     /** @test */
     public function deleteClient()
     {
-        $client = factory(Client::class)->create();
+        $client = Client::factory()->create();
 
         $response = $this->json('DELETE', route('clients.destroy', $client->external_id));
         $this->assertEquals(302, $response->getStatusCode());
@@ -95,7 +95,7 @@ class CanNotAccessTest extends TestCase
     /** @test */
     public function deleteUser()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->json('DELETE', route('users.destroy', $user->external_id));
         $this->assertEquals(302, $response->getStatusCode());
@@ -106,7 +106,7 @@ class CanNotAccessTest extends TestCase
     /** @test */
     public function updateUser()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->json('PATCH', route('users.update', $user->external_id));
         $this->assertEquals(302, $response->getStatusCode());
@@ -116,7 +116,7 @@ class CanNotAccessTest extends TestCase
     /** @test */
     public function deleteDepartment()
     {
-        $department = factory(Department::class)->create();
+        $department = Department::factory()->create();
 
         $response = $this->json('DELETE', route('departments.destroy', $department->external_id));
         $this->assertEquals(302, $response->getStatusCode());

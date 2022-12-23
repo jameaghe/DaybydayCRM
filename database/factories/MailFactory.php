@@ -1,12 +1,14 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Mail;
-use Faker\Generator as Faker;
+class MailFactory extends Factory
+{
 
-$factory->define(Mail::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+    public function definition()
+    {
+        return [];
+    }
+
+}

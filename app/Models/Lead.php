@@ -6,6 +6,7 @@ use App\Services\Comment\Commentable;
 use App\Traits\DeadlineTrait;
 use App\Traits\SearchableTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,7 +24,7 @@ use Ramsey\Uuid\Uuid;
  */
 class Lead extends Model implements Commentable
 {
-    use SearchableTrait, SoftDeletes, DeadlineTrait;
+    use HasFactory, SearchableTrait, SoftDeletes, DeadlineTrait;
 
     protected $searchableFields = ['title'];
 

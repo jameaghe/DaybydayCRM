@@ -1,12 +1,14 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
+class CreditLineFactory extends Factory
+{
 
-use App\Models\CreditLine;
-use Faker\Generator as Faker;
-
-$factory->define(CreditLine::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+}

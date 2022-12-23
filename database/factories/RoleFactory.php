@@ -1,16 +1,18 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Role;
-use Faker\Generator as Faker;
+class RoleFactory extends Factory {
 
-$factory->define(Role::class, function (Faker $faker) {
-    return [
-        'name' => 'factory',
-        'external_id' => $faker->uuid,
-        'display_name' => 'Factory Role',
-        'description' => 'Mock role',
+    public function definition()
+    {
+        return [
+            'name' => 'factory',
+            'external_id' => fake()->uuid,
+            'display_name' => 'Factory Role',
+            'description' => 'Mock role',
 
-    ];
-});
+        ];
+    }
+}

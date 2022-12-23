@@ -29,7 +29,7 @@ class DepartmentsControllerTest extends TestCase
     /** @test **/
     public function can_delete_department()
     {
-        $department = factory(Department::class)->create();
+        $department = Department::factory()->create();
 
         $this->assertNotNull(Department::where('external_id', $department->external_id)->first());
         $this->json('DELETE', route('departments.destroy', $department->external_id));
@@ -39,7 +39,7 @@ class DepartmentsControllerTest extends TestCase
     /** @test **/
     public function cant_delete_department_if_user_is_associated()
     {
-        $department = factory(Department::class)->create();
+        $department = Department::factory()->create();
         $this->user->department()->attach([$department->id]);
 
         $this->assertNotNull(Department::where('external_id', $department->external_id)->first());

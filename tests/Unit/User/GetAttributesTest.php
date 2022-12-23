@@ -17,10 +17,10 @@ class GetAttributesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $department = factory(Department::class)->create([
+        $department = Department::factory()->create([
             'name' => 'Tiger'
         ]);
-        $this->user = factory(User::class)->create([
+        $this->user = User::factory()->create([
             'name' => 'Eye of the'
         ]);
         $this->user->department()->sync([$department->id]);

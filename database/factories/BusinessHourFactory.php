@@ -1,12 +1,16 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\BusinessHour;
-use Faker\Generator as Faker;
+class BusinessHourFactory extends Factory
+{
 
-$factory->define(BusinessHour::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+
+}

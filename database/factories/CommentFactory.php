@@ -1,19 +1,20 @@
 <?php
-
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-
+namespace Database\Factories;
 
 use App\Models\Task;
 use App\Models\User;
-use App\Models\Comment;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
+class CommentFactory extends Factory
+{
 
-$factory->define(Comment::class, function (Faker $faker) {
-    return [
-        'external_id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-        'user_id' => factory(User::class),
-        'source_type' => Task::class,
-        'source_id' => factory(Task::class),
-        'description' => $faker->paragraph(rand(2,10))
-    ];
-});
+    public function definition()
+    {
+        return [
+            'external_id' => fake()->uuid,
+            'user_id' => User::factory(),
+            'source_type' => Task::class,
+            'source_id' => Task::factory(),
+            'description' => fake()->paragraph(rand(2,10))
+        ];
+    }
+}

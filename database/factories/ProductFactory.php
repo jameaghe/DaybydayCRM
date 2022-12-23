@@ -1,19 +1,22 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Faker\Provider\Uuid;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Product;
-use Faker\Generator as Faker;
-use Ramsey\Uuid\Uuid;
+class ProductFactory extends Factory
+{
 
-$factory->define(Product::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'external_id' => $faker->uuid,
-        'description' => $faker->text(),
-        'number' => Uuid::uuid1()->toString(),
-        'price' => $faker->numberBetween(1000,10000),
-        'default_type' => 'hours',
-        'archived' => false,
-    ];
-});
+    public function definition()
+    {
+        return [
+            'name' => fake()->name,
+            'external_id' => fake()->uuid,
+            'description' => fake()->text(),
+            'number' => fake()->uuid(),
+            'price' => fake()->numberBetween(1000,10000),
+            'default_type' => 'hours',
+            'archived' => false,
+        ];
+    }
+}

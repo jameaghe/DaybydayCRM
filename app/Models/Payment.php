@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Repositories\Money\Money;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Payment extends Model
 {
-    use  SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'external_id',

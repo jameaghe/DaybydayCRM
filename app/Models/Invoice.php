@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use App\Enums\OfferStatus;
 use App\Enums\InvoiceStatus;
 use App\Repositories\Money\Money;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Invoice\InvoiceCalculator;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,7 +21,7 @@ use App\Repositories\BillingIntegration\BillingIntegrationInterface;
  */
 class Invoice extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     const STATUS_SENT = "sent";
 

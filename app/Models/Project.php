@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Observers\ElasticSearchObserver;
 use App\Traits\DeadlineTrait;
 use App\Traits\SearchableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Services\Comment\Commentable;
@@ -14,7 +15,7 @@ use Carbon\Carbon;
 
 class Project extends model implements Commentable
 {
-    use  SoftDeletes, SearchableTrait, DeadlineTrait;
+    use HasFactory, SoftDeletes, SearchableTrait, DeadlineTrait;
     const PROJECT_STATUS_CLOSED = "Closed";
 
     protected $searchableFields = ['title'];

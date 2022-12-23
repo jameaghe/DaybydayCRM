@@ -9,7 +9,11 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::auth();
+
+    use App\Http\Controllers\PaymentsController;
+    use Illuminate\Support\Facades\Route;
+
+    Route::auth();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => ['auth']], function () {
 
@@ -185,7 +189,7 @@ Route::group(['middleware' => ['auth']], function () {
      */
     Route::group(['prefix' => 'payment'], function () {
         Route::delete('/{payment}', 'PaymentsController@destroy')->name('payment.destroy');
-        Route::post('/add-payment/{invoice}', 'PaymentsController@addPayment')->name('payment.add');
+        Route::post('/add-payment/{invoice}', [PaymentsController::class, 'addPayment'])->name('payment.add');
     });
 
     /** 

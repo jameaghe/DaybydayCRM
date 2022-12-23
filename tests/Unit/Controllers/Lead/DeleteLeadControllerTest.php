@@ -20,7 +20,7 @@ class DeleteLeadControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->lead = factory(Lead::class)->create();
+        $this->lead = Lead::factory()->create();
 
         $this->offer = Offer::create([
             'source_id' => $this->lead->id,

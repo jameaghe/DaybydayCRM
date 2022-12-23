@@ -1,16 +1,19 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\InvoiceLine;
-use Faker\Generator as Faker;
+class InvoiceLineFactory extends Factory
+{
 
-$factory->define(InvoiceLine::class, function (Faker $faker) {
-    return [
-        'title' => $faker->word,
-        'external_id' => $faker->uuid,
-        'type' => $faker->randomElement(['pieces', 'hours', 'days', 'session', 'kg', 'package']),
-        'quantity' => $faker->randomNumber(1),
-        'price' => $faker->randomNumber(4),
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'title' => fake()->word,
+            'external_id' => fake()->uuid,
+            'type' => fake()->randomElement(['pieces', 'hours', 'days', 'session', 'kg', 'package']),
+            'quantity' => fake()->randomNumber(1),
+            'price' => fake()->randomNumber(4),
+        ];
+    }
+}

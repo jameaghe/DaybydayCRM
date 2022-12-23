@@ -43,7 +43,7 @@ class UsersControllerTest extends TestCase
     public function only_owner_role_can_update_user()
     {
         /** @var User $manager */
-        $manager = factory(User::class)->create();
+        $manager = User::factory()->create();
         $manager->roles()->save(Role::whereName('manager')->first());
         $this->actingAs($manager);
 

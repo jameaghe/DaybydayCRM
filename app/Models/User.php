@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use Fenos\Notifynder\Notifable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Cache;
 use App\Models\Client;
@@ -16,7 +17,7 @@ use Carbon\Carbon;
 
 class User extends Authenticatable
 {
-    use Notifiable, EntrustUserTrait,  SoftDeletes, Billable;
+    use HasFactory, Notifiable, EntrustUserTrait, SoftDeletes, Billable;
 
     public function restore()
     {

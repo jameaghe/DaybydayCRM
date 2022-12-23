@@ -1,24 +1,41 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
+use App\Models\Department;
 use App\Models\User;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(User::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'external_id' => $faker->uuid,
-        'email' => $faker->email,
-        'password' => bcrypt('secretpassword'),
-        'address' => $faker->secondaryAddress(),
-        'primary_number' => $faker->randomNumber(8),
-        'secondary_number' => $faker->randomNumber(8),
-        'remember_token' => null,
-        'language' => 'en',
-    ];
-});
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ */
+class UserFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
 
-$factory->afterCreating(User::class, function ($user, $faker) {
-    $user->department()->attach(\App\Models\Department::first()->id);
-});
+    public function configure(): UserFactory
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->department()->attach(Department::first()->id);
+        });
+    }
+
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->name(),
+            'external_id' => fake()->uuid,
+            'email' => fake()->email,
+            'password' => bcrypt('secretpassword'),
+            'address' => fake()->secondaryAddress(),
+            'primary_number' => fake()->randomNumber(8),
+            'secondary_number' => fake()->randomNumber(8),
+            'remember_token' => null,
+            'language' => 'en',
+        ];
+    }
+}

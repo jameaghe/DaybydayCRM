@@ -1,18 +1,23 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Contact;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Contact::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'external_id' => $faker->uuid,
-        'email' => $faker->email,
-        'primary_number' => $faker->randomNumber(8),
-        'secondary_number' => $faker->randomNumber(8),
-        'client_id' => 1,
-        'is_primary' => 1,
-    ];
-});
+class ContactFactory extends Factory
+{
+
+    public function definition()
+    {
+        return [
+            'name' => fake()->name,
+            'external_id' => fake()->uuid,
+            'email' => fake()->email,
+            'primary_number' => fake()->randomNumber(8),
+            'secondary_number' => fake()->randomNumber(8),
+            'client_id' => 1,
+            'is_primary' => 1,
+        ];
+    }
+}

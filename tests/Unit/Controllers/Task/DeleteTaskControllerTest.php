@@ -18,7 +18,7 @@ class DeleteTaskControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->task = factory(Task::class)->create();
+        $this->task = Task::factory()->create();
         
         $this->withoutMiddleware(VerifyCsrfToken::class);
     }

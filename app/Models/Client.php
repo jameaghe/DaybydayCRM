@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Http\Controllers\ClientsController;
 use App\Observers\ElasticSearchObserver;
 use App\Traits\SearchableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Client extends Model
 {
-    use  SearchableTrait, SoftDeletes;
+    use HasFactory, SearchableTrait, SoftDeletes;
 
     protected $searchableFields = ['company_name', 'vat', 'address'];
 

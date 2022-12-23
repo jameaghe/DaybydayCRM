@@ -1,23 +1,26 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-
-use App\Models\Task;
+use App\Models\Client;
 use App\Models\User;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Task::class, function (Faker $faker) {
-    return [
-        'title' => $faker->sentence,
-        'external_id' => $faker->uuid,
-        'description' => $faker->paragraph,
-        'user_created_id' => factory(User::class),
-        'user_assigned_id' => factory(User::class),
-        'client_id' => factory(\App\Models\Client::class),
-        'status_id' => $faker->numberBetween($min = 1, $max = 4),
-        'deadline' => $faker->dateTimeThisYear($max = 'now'),
-        'created_at' => $faker->dateTimeThisYear($max = 'now'),
-        'updated_at' => $faker->dateTimeThisYear($max = 'now'),
+class TaskFactory extends Factory
+{
 
-    ];
-});
+    public function definition()
+    {
+        return [
+            'title' => fake()->sentence,
+            'external_id' => fake()->uuid,
+            'description' => fake()->paragraph,
+            'user_created_id' => User::factory(),
+            'user_assigned_id' => User::factory(),
+            'client_id' => Client::factory(),
+            'status_id' => fake()->numberBetween(1, 4),
+            'deadline' => fake()->dateTimeThisYear('now'),
+            'created_at' => fake()->dateTimeThisYear('now'),
+            'updated_at' => fake()->dateTimeThisYear('now'),
+        ];
+    }
+}

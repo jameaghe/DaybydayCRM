@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Invoice;
+namespace Tests\Unit\Offer;
 
 use App\Enums\OfferStatus;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\In;
 use Tests\TestCase;
 
-class OfferStatusEnumTest extends TestCase
+class OffersStatusEnumTest extends TestCase
 {
     use DatabaseTransactions;
 

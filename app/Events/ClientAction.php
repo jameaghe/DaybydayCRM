@@ -17,7 +17,7 @@ class ClientAction
 
     use InteractsWithSockets, SerializesModels;
 
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
     }

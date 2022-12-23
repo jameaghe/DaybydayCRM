@@ -1,15 +1,17 @@
 <?php
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Status;
-use Faker\Generator as Faker;
+class StatusFactory extends Factory
+{
 
-$factory->define(Status::class, function (Faker $faker) {
-    return [
-        'external_id' => $faker->uuid,
-        'title' => $faker->word,
-        'color' => '#000',
-
-    ];
-});
+    public function definition()
+    {
+        return [
+            'external_id' => fake()->uuid,
+            'title' => fake()->word,
+            'color' => '#000',
+        ];
+    }
+}
